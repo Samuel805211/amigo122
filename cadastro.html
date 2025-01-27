@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Au-Compatible" content="IE=edge">
+  <meta name="description" content="Sim, Cadastra para pode Vé, Os melhores desenhos da sua vidá">
+  <meta name="keywords" content="Cadastro,Desenhos,Tela de Cadastro,Tela de login">
+  <meta name="author" content="Samuel Rodrigues Silva Lima">
+  <title>Tela de Cadastro</title>
+  <style>
+    /* Vídeo de fundo */
+    video#background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    body {
+      background-color: black;
+      color: lime;
+      font-family: "Courier New", Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image:url('img/dragão.gif');
+      flex-direction: column;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      border: 2px solid lime;
+      border-radius: 15px;
+      width: 350px;
+      background-color: rgba(0, 0, 0, 0.8);
+      box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.5);
+    }
+
+    h1 {
+      color: lime;
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .social-links a {
+      color: white;
+      background-color: red;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .social-links a:hover {
+      background-color: darkred;
+      transform: scale(1.05);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 90%;
+      padding: 12px;
+      margin: 12px 0;
+      background: black;
+      border: 1px solid lime;
+      color: lime;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: white;
+      box-shadow: 0 0 10px lime;
+    }
+
+    button {
+      background-color: lime;
+      color: black;
+      font-weight: bold;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: black;
+      color: lime;
+      border: 1px solid lime;
+      transform: scale(1.05);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: lime;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Estilos para o popup */
+    #popup, #popup-error {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #28a745;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 18px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    #popup-error {
+      background-color: #dc3545;
+    }
+
+    #popup-error .close-btn {
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 20px;
+    }   /* Redes sociais */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Espaçamento entre botões */
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: red;
+            padding: 8px 15px; /* Botões menores */
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px; /* Texto menor */
+            font-weight: bold;
+        }
+
+        .social-links a:hover {
+            background-color: darkred;
+        }
+
+        .ola {
+            background-image: url("img/you.png")
+        }
+
+        .insta {
+            background-image: url("img/insta.jpeg")
+        }
+
+        .samuel {
+            background-image: url("img/you.png")
+        }
+        .loading-bar6 {
+            width: 100%;
+            height: 10px;
+            background-color: #222;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #00ff00;
+            animation: loading 10s linear forwards;
+        }
+
+        @keyframes loading {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .loading-text6 {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .popup6 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px #0f0;
+            z-index: 1000;
+        }
+        #popup4 {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #333;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      width: 320px;
+    }
+
+    #popup4.show4 {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* Estilo da foto redonda */
+    #popup4 img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid #ff4081;
+      transition: transform 0.3s ease;
+    }
+
+    #popup4 img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Texto abaixo da foto */
+    #popup4 p {
+      font-size: 20px;
+      margin: 10px 0;
+      color: #ff4081;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Botão de fechar (X) */
+    #popup4 .close-btn4 {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #ff4081;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    #popup4 .close-btn4:hover {
+      color: #ff80ab;
+    }
+
+    /* Estilo do botão */
+    .aqui {
+      background-color: #ff4081;
+      color: white;
+      font-weight: bold;
+      border: 2px solid #ff4081;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(255, 64, 129, 0.7);
+      transition: all 0.3s ease;
+    }
+
+    .aqui:hover {
+      background-color: #f50057;
+      color: #fff;
+      border-color: #f50057;
+      box-shadow: 0 0 25px rgba(255, 0, 87, 1);
+      transform: scale(1.1);
+    }
+
+    .aqui:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <!-- Popup -->
+  <div id="popup4">
+    <span class="close-btn4" onclick="closePopup4()">X</span>
+    <img src="img/WhatsApp Image 2025-01-27 at 10.37.26.jpeg" alt="VitorxRichard">
+    <p>Inscreva-se no canal do YouTube!</p>
+    <a class="aqui" href="https://www.youtube.com/c/SeuCanal" target="_blank">Clique aqui para se inscrever</a>
+  </div>
+  <div class="popup6">
+    <h1>Carregando...</h1>
+    <div class="loading-bar6">
+        <div class="progress"></div>
+    </div>
+    <p class="loading-text6">Systema Carregador</p>
+</div>
+
+
+  <div class="container">
+    <div class="social-links">
+      <a class="ola" href="https://youtube.com/@vitorxrichard?si=Zf6wIeipZQ1ygZpm/vídeo?sub_confirmation=1" target="_blank">YouTube</a>
+      <a class="insta" href="https://www.instagram.com/l_l_vitor_l_l?igsh=MWN2cjZlcXczcDI0Yg==" target="_blank">Instagram</a>
+      <a href="https://www.threads.net/@l_l_vitor_l_l" target="_blank">Threads</a>
+    </div>
+    <h1>Cadastro</h1>
+    <p class="texto">Preencha as informações para cadastrar-se e ver os melhores desenhos da sua vida, com uma surpresa incrível para maiores de 18 anos!</p>
+    <input type="text" id="name" placeholder="Nome" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Senha" />
+    <button onclick="register()">Cadastrar</button>
+    <a href="index.html">Voltar para Login</a>
+  </div>
+
+  <!-- Popup de sucesso -->
+  <div id="popup">Cadastro realizado com sucesso! Sua conta já foi criada. Volte para a Tela de Login!</div>
+
+  <!-- Popup de erro -->
+  <div id="popup-error">
+    Preencha todos os campos! Obrigatório.
+    <span class="close-btn" onclick="closePopupError()">X</span>
+  </div>
+
+  <script>
+        setTimeout(() => {
+            const popup6 = document.querySelector('.popup6');
+            popup6.style.display = 'none';
+        }, 10000); // 10000 
+    function register() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (!name || !email || !password) {
+        showPopupError();
+        return;
+      }
+
+      const userData = {
+        nome: name,
+        email: email,
+        senha: password,
+      };
+
+      localStorage.setItem('usuario', JSON.stringify(userData));
+
+      // Exibir o popup de sucesso
+      const popup = document.getElementById("popup");
+      popup.style.display = "block";
+      popup.style.opacity = "1";
+
+      // Ocultar o popup após 3 segundos
+      setTimeout(() => {
+        popup.style.opacity = "0";
+        setTimeout(() => {
+          popup.style.display = "none";
+        }, 300); // Após a animação de desaparecimento
+      }, 3000); // O popup desaparecerá após 3 segundos
+    }
+
+    function showPopupError() {
+      const popupError = document.getElementById("popup-error");
+      popupError.style.display = "block";
+      popupError.style.opacity = "1";
+    }
+
+    function closePopupError() {
+      const popupError = document.getElementById("popup-error");
+      popupError.style.opacity = "0";
+      setTimeout(() => {
+        popupError.style.display = "none";
+      }, 300); // Após a animação de desaparecimento
+    }
+     // Função para mostrar o popup
+     function showPopup4() {
+      const popup4 = document.getElementById("popup4");
+      popup4.classList.add("show4");
+    }
+
+    // Função para fechar o popup
+    function closePopup4() {
+      const popup4 = document.getElementById("popup4");
+      popup4.classList.remove("show4");
+    }
+
+    // Exibir o popup automaticamente após 11 segundos (11000ms)
+    setTimeout(showPopup4, 11000);
+  </script>
+</body>
+</html>

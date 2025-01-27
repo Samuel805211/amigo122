@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Au-Compatible" content="IE=edge">
+    <meta name="descripton" content="Faz Login e Veja os Melhores Desenhos E Desenhos Maiores de 18 Anos Gostosos kkkk">
+     <meta name="keywords" content="Login,Desenhos,Maiores de 18 Anos,Desenhos tops">
+     <meta name="author"  content="Samuel Rodrigues Silva Lima">
+    <title>Tela de Login</title>
+    <style>
+        body {
+            background-image: url("img/mana.gif");
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: auto; /* Adiciona a barra de rolagem */
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 20px; /* Para afastar o conteúdo das bordas */
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 2px solid #0f0;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px #0f0;
+            z-index: 1000;
+            animation: hacker-glow 1.5s infinite alternate;
+            background-image: url("img/naruto.gif");
+            background-position: center;
+        }
+
+        @keyframes hacker-glow {
+            from {
+                box-shadow: 0 0 10px #0f0;
+            }
+            to {
+                box-shadow: 0 0 30px #0f0;
+            }
+        }
+
+        .loading-bar {
+            margin-top: 20px;
+            width: 100%;
+            height: 10px;
+            background-color: #222;
+            overflow: hidden;
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .loading-bar .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #0f0;
+            animation: loading 10s linear forwards;
+        }
+
+        @keyframes loading {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: black;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #00ff00;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: black;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+
+        /* Redes sociais */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Espaçamento entre botões */
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: red;
+            padding: 8px 15px; /* Botões menores */
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px; /* Texto menor */
+            font-weight: bold;
+        }
+
+        .social-links a:hover {
+            background-color: darkred;
+        }
+
+        .ola {
+            background-image: url("img/you.png")
+        }
+
+        .insta {
+            background-image: url("img/insta.jpeg")
+        }
+
+        .samuel {
+            background-image: url("img/you.png")
+        }
+
+        /* Novo popup de erro */
+        .error-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: rgba(255, 0, 0, 0.9);
+            border: 2px solid red;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 15px red;
+            z-index: 1000;
+            display: none; /* Começa escondido */
+        }
+        /* Estilo do popup */
+    #popup4 {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #333;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      width: 320px;
+    }
+
+    #popup4.show4 {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* Estilo da foto redonda */
+    #popup4 img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid #ff4081;
+      transition: transform 0.3s ease;
+    }
+
+    #popup4 img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Texto abaixo da foto */
+    #popup4 p {
+      font-size: 20px;
+      margin: 10px 0;
+      color: #ff4081;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Botão de fechar (X) */
+    #popup4 .close-btn4 {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #ff4081;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    #popup4 .close-btn4:hover {
+      color: #ff80ab;
+    }
+
+    /* Estilo do botão */
+    .aqui {
+      background-color: #ff4081;
+      color: white;
+      font-weight: bold;
+      border: 2px solid #ff4081;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(255, 64, 129, 0.7);
+      transition: all 0.3s ease;
+    }
+
+    .aqui:hover {
+      background-color: #f50057;
+      color: #fff;
+      border-color: #f50057;
+      box-shadow: 0 0 25px rgba(255, 0, 87, 1);
+      transform: scale(1.1);
+    }
+
+    .aqui:active {
+      transform: scale(0.95);
+    }
+    </style>
+</head>
+<body>
+    
+     <!-- Popup -->
+  <div id="popup4">
+    <span class="close-btn4" onclick="closePopup4()">X</span>
+    <img src="img/WhatsApp Image 2025-01-27 at 10.37.26.jpeg" alt="VitorxRichard">
+    <p>Inscreva-se no canal do YouTube!</p>
+    <a class="aqui" href="https://www.youtube.com/c/SeuCanal" target="_blank">Clique aqui para se inscrever</a>
+  </div>
+    <div class="popup" id="hackerPopup">
+        <p>Carregando...</p>
+        <div class="loading-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <!-- Novo popup de erro -->
+    <div class="error-popup" id="errorPopup">
+        <p>E-mail ou senha incorretos! Sim Voçê Não Tive uma conta sim Cadastra Agora! Mesmo</p>
+    </div>
+
+    <div class="container">
+        <!-- Links das redes sociais -->
+        <div class="social-links">
+            <a class="ola" href="https://youtube.com/@vitorxrichard?si=Zf6wIeipZQ1ygZpm/vídeo?sub_confirmation=1" target="_blank">YouTube</a>
+            <a class="insta" href="https://www.instagram.com/l_l_vitor_l_l?igsh=MWN2cjZlcXczcDI0Yg==" target="_blank">Instagram</a>
+            <a href="https://www.threads.net/@l_l_vitor_l_l" target="_blank">Threads</a>
+        </div>
+
+        <!-- Formulário de login -->
+        <h1>Login</h1>
+        <h3 style="color:white">Preencha as informações de login para acessar os melhores desenhos da sua vida!</h3>
+        <form id="loginForm" action="#" method="post">
+            <input type="text" name="name" placeholder="Nome" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <input type="submit"  value="Entrar"><br>
+            Já tem conta? <a style="text-decoration: none; font-size:15px" href="cadastro.html">Sim, cadastrar</a><br>
+            <a class="samuel" style="text-decoration: none; background: black; color: yellow; text-shadow:10px 10px 4px yellow;border-radius: 10px;width: 190px; border: 4px solid yellow; display: inline-block; padding: 5px;" href="#">LOGA ADM</a>
+        </form>
+    </div>
+
+    <script>
+        // Verifica se o usuário já existe no localStorage antes de enviar o formulário
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Impede o envio do formulário
+
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+
+            const userData = JSON.parse(localStorage.getItem('usuario'));
+
+            if (userData && userData.email === email && userData.senha === password) {
+                alert("Bem-vindo, " + userData.nome + "!");
+                // Aqui, você pode redirecionar ou permitir o acesso.
+            } else {
+                // Exibe o popup de erro
+                const errorPopup = document.getElementById('errorPopup');
+                errorPopup.style.display = 'block';
+                // Oculta o popup de erro após 5 segundos
+                setTimeout(() => {
+                    errorPopup.style.display = 'none';
+                }, 5000);
+            }
+        });
+
+        // Esconde o popup de carregamento após 10 segundos
+        setTimeout(() => {
+            const popup = document.getElementById('hackerPopup');
+            popup.style.display = 'none';
+        }, 10000); // 10000 ms = 10 segundos
+     // Função para mostrar o popup
+     function showPopup4() {
+      const popup4 = document.getElementById("popup4");
+      popup4.classList.add("show4");
+    }
+
+    // Função para fechar o popup
+    function closePopup4() {
+      const popup4 = document.getElementById("popup4");
+      popup4.classList.remove("show4");
+    }
+
+    // Exibir o popup automaticamente após 11 segundos (11000ms)
+    setTimeout(showPopup4, 11000);
+    </script>
+</body>
+</html>
